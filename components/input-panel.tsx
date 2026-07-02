@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, memo, useCallback } from 'react'
 import { Upload, ChevronDown } from 'lucide-react'
 
 interface InputPanelProps {
@@ -8,17 +8,17 @@ interface InputPanelProps {
   isAnalyzing: boolean
 }
 
-export default function InputPanel({ onAnalyze, isAnalyzing }: InputPanelProps) {
+function InputPanel({ onAnalyze, isAnalyzing }: InputPanelProps) {
   const [content, setContent] = useState('')
   const [inputMethod, setInputMethod] = useState<'text' | 'file'>('text')
 
-  const handleAnalyze = () => {
+  const handleAnalyze = useCallback(() => {
     if (content.trim()) {
       onAnalyze(content)
     }
-  }
+  }, [content, onAnalyze])
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
       const reader = new FileReader()
@@ -28,7 +28,7 @@ export default function InputPanel({ onAnalyze, isAnalyzing }: InputPanelProps) 
       }
       reader.readAsText(file)
     }
-  }
+  }, [])
 
   return (
     <div className="p-6 h-full flex flex-col">
@@ -117,3 +117,5 @@ export default function InputPanel({ onAnalyze, isAnalyzing }: InputPanelProps) 
     </div>
   )
 }
+
+export default memo(InputPanel)

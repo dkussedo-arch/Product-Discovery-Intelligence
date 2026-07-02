@@ -1,9 +1,10 @@
 'use client'
 
+import { memo } from 'react'
 import Link from 'next/link'
 import { Compass, LogOut } from 'lucide-react'
 
-export default function DashboardNav() {
+function DashboardNav() {
   return (
     <nav className="h-16 border-b border-gray-200 bg-white flex items-center justify-between px-6">
       <div className="flex items-center gap-3">
@@ -24,3 +25,5 @@ export default function DashboardNav() {
     </nav>
   )
 }
+
+export default memo(DashboardNav)

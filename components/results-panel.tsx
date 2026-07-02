@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { Search } from 'lucide-react'
 
 interface ResultsPanelProps {
@@ -9,7 +10,7 @@ interface ResultsPanelProps {
   onSearchChange: (query: string) => void
 }
 
-export default function ResultsPanel({
+function ResultsPanel({
   results,
   isAnalyzing,
   searchQuery,
@@ -148,3 +149,5 @@ export default function ResultsPanel({
     </div>
   )
 }
+
+export default memo(ResultsPanel)

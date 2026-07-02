@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { Sparkles } from 'lucide-react'
 
 interface OutputPanelProps {
@@ -7,7 +8,7 @@ interface OutputPanelProps {
   isAnalyzing: boolean
 }
 
-export default function OutputPanel({ results, isAnalyzing }: OutputPanelProps) {
+function OutputPanel({ results, isAnalyzing }: OutputPanelProps) {
   const emptyState = !results && !isAnalyzing
 
   return (
@@ -158,3 +159,5 @@ export default function OutputPanel({ results, isAnalyzing }: OutputPanelProps) 
     </div>
   )
 }
+
+export default memo(OutputPanel)
