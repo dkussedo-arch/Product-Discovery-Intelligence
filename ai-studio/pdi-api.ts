@@ -4,7 +4,7 @@ import type { IngestRequest, SynthesisResult } from './types'
 export const PDI_API_BASE =
   (typeof import.meta !== 'undefined' &&
     (import.meta as { env?: { VITE_PDI_API_URL?: string } }).env?.VITE_PDI_API_URL) ||
-  'https://REPLACE-WITH-YOUR-PDI-DEPLOYMENT.vercel.app'
+  'https://product-discovery-intelligence.vercel.app'
 
 function apiUrl(path: string, base = PDI_API_BASE): string {
   return `${base.replace(/\/$/, '')}${path}`
