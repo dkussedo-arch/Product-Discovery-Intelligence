@@ -1,3 +1,4 @@
+import { OPTIONS, withCors } from '@/lib/api-route'
 import { synthesizeAnswer } from '@/lib/rag/synthesis'
 import {
   buildContextBlock,
@@ -8,11 +9,16 @@ import {
 export const runtime = 'nodejs'
 export const maxDuration = 60
 
+export { OPTIONS }
+
 export async function POST(request: Request): Promise<Response> {
   if (!process.env.ANTHROPIC_API_KEY) {
-    return Response.json(
-      { error: 'AI service is not configured. Set ANTHROPIC_API_KEY.' },
-      { status: 503 }
+    return withCors(
+      request,
+      Response.json(
+        { error: 'AI service is not configured. Set ANTHROPIC_API_KEY.' },
+        { status: 503 }
+      )
     )
   }
 
@@ -20,7 +26,10 @@ export async function POST(request: Request): Promise<Response> {
   try {
     body = await request.json()
   } catch {
-    return Response.json({ error: 'Request body must be valid JSON.' }, { status: 400 })
+    return withCors(
+      request,
+      Response.json({ error: 'Request body must be valid JSON.' }, { status: 400 })
+    )
   }
 
   const query =
@@ -32,7 +41,10 @@ export async function POST(request: Request): Promise<Response> {
       : ''
 
   if (!query) {
-    return Response.json({ error: 'A query string is required.' }, { status: 400 })
+    return withCors(
+      request,
+      Response.json({ error: 'A query string is required.' }, { status: 400 })
+    )
   }
 
   try {
@@ -41,10 +53,13 @@ export async function POST(request: Request): Promise<Response> {
     const context = buildContextBlock(retrieved)
     const result = await synthesizeAnswer(query, context, citations)
 
-    return Response.json(result)
+    return withCors(request, Response.json(result))
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Query failed.'
     console.error('[PDI] Query error:', message)
-    return Response.json({ error: 'Failed to process query. Please try again.' }, { status: 500 })
+    return withCors(
+      request,
+      Response.json({ error: 'Failed to process query. Please try again.' }, { status: 500 })
+    )
   }
 }

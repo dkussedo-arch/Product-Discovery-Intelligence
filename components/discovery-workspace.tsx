@@ -14,6 +14,7 @@ import {
   ThumbsUp,
 } from 'lucide-react'
 
+import { queryMemory } from '@/lib/pdi-api'
 import type { SynthesisResult } from '@/lib/types'
 import { cn } from '@/lib/utils'
 
@@ -59,18 +60,8 @@ export function DiscoveryWorkspace() {
     setResult(null)
 
     try {
-      const response = await fetch('/api/query', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: trimmed }),
-      })
-
-      const payload = await response.json()
-      if (!response.ok) {
-        throw new Error(payload.error ?? 'Query failed.')
-      }
-
-      setResult(payload as SynthesisResult)
+      const synthesis = await queryMemory(trimmed)
+      setResult(synthesis)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong.')
     } finally {

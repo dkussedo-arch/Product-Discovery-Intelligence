@@ -1,20 +1,26 @@
+import { OPTIONS, withCors } from '@/lib/api-route'
 import { addArtifact, listArtifacts } from '@/lib/rag/store'
 import type { ArtifactSource, IngestRequest } from '@/lib/types'
 
 export const runtime = 'nodejs'
 
-export async function GET(): Promise<Response> {
+export { OPTIONS }
+
+export async function GET(request: Request): Promise<Response> {
   const artifacts = listArtifacts()
-  return Response.json({
-    count: artifacts.length,
-    artifacts: artifacts.map(({ id, title, source, createdAt, tags }) => ({
-      id,
-      title,
-      source,
-      createdAt,
-      tags,
-    })),
-  })
+  return withCors(
+    request,
+    Response.json({
+      count: artifacts.length,
+      artifacts: artifacts.map(({ id, title, source, createdAt, tags }) => ({
+        id,
+        title,
+        source,
+        createdAt,
+        tags,
+      })),
+    })
+  )
 }
 
 export async function POST(request: Request): Promise<Response> {
@@ -22,14 +28,17 @@ export async function POST(request: Request): Promise<Response> {
   try {
     body = await request.json()
   } catch {
-    return Response.json({ error: 'Request body must be valid JSON.' }, { status: 400 })
+    return withCors(
+      request,
+      Response.json({ error: 'Request body must be valid JSON.' }, { status: 400 })
+    )
   }
 
   const payload = body as IngestRequest
   if (!payload.title?.trim() || !payload.content?.trim()) {
-    return Response.json(
-      { error: 'title and content are required.' },
-      { status: 400 }
+    return withCors(
+      request,
+      Response.json({ error: 'title and content are required.' }, { status: 400 })
     )
   }
 
@@ -45,10 +54,13 @@ export async function POST(request: Request): Promise<Response> {
       tags: payload.tags,
     })
 
-    return Response.json({ artifact })
+    return withCors(request, Response.json({ artifact }))
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Ingest failed.'
     console.error('[PDI] Ingest error:', message)
-    return Response.json({ error: 'Failed to ingest artifact.' }, { status: 500 })
+    return withCors(
+      request,
+      Response.json({ error: 'Failed to ingest artifact.' }, { status: 500 })
+    )
   }
 }

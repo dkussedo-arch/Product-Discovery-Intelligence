@@ -1,5 +1,6 @@
 import { DiscoveryWorkspace } from '@/components/discovery-workspace'
 import { Github, Layers, Link2, Shield } from 'lucide-react'
+import Link from 'next/link'
 
 const LINKS = {
   github:
@@ -20,14 +21,12 @@ export default function HomePage() {
             <span className="font-medium">Product Discovery Intelligence</span>
           </div>
           <nav className="flex items-center gap-4 text-sm text-[var(--color-muted)]">
-            <a
-              href={LINKS.aiStudio}
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/studio"
               className="hidden hover:text-[var(--color-foreground)] sm:inline"
             >
-              AI Studio prototype
-            </a>
+              AI Studio UI
+            </Link>
             <a
               href={LINKS.github}
               target="_blank"
