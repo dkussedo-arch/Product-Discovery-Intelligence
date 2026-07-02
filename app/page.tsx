@@ -109,6 +109,80 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Features Section */}
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-20 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 text-center">
+            Powerful features built for teams
+          </h2>
+          <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
+            Everything you need to win in competitive markets
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Feature 1 */}
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-purple-100">
+                  <Zap className="h-6 w-6 text-purple-600" />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Instant Analysis</h3>
+                <p className="text-gray-600">
+                  Analyze competitor data in seconds with AI-powered entity extraction and relationship mapping. No manual work required.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-purple-100">
+                  <Target className="h-6 w-6 text-purple-600" />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Market Intelligence</h3>
+                <p className="text-gray-600">
+                  Identify market gaps, positioning opportunities, and competitive threats with AI-synthesized insights and recommendations.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-purple-100">
+                  <Sparkles className="h-6 w-6 text-purple-600" />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Search & Explore</h3>
+                <p className="text-gray-600">
+                  Powerful search functionality to find patterns, relationships, and insights across all your competitive intelligence data.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-purple-100">
+                  <Compass className="h-6 w-6 text-purple-600" />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Actionable Recommendations</h3>
+                <p className="text-gray-600">
+                  Move beyond data. Get specific, prioritized recommendations to improve your product strategy and market positioning.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works Section */}
       <section className="w-full px-4 sm:px-6 lg:px-8 py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto">
@@ -168,6 +242,68 @@ export default function Landing() {
           <div className="md:hidden flex flex-col items-center gap-6 mt-12">
             <div className="text-3xl text-gray-300">↓</div>
             <div className="text-3xl text-gray-300">↓</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 text-center">
+            Trusted by product leaders
+          </h2>
+          <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
+            See why teams use Product Discovery to make smarter decisions
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div className="bg-white p-8 rounded-2xl border border-gray-200">
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-yellow-400 text-xl">★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-6 italic">
+                &quot;This tool has completely changed how we approach competitive analysis. What used to take days now takes minutes.&quot;
+              </p>
+              <div>
+                <p className="font-semibold text-gray-900">Sarah Chen</p>
+                <p className="text-sm text-gray-600">VP Product, TechCorp</p>
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="bg-white p-8 rounded-2xl border border-gray-200">
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-yellow-400 text-xl">★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-6 italic">
+                &quot;The AI insights are incredibly accurate. We&apos;ve identified three major market gaps we never would have seen manually.&quot;
+              </p>
+              <div>
+                <p className="font-semibold text-gray-900">Marcus Rodriguez</p>
+                <p className="text-sm text-gray-600">Product Manager, StartupXYZ</p>
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="bg-white p-8 rounded-2xl border border-gray-200">
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-yellow-400 text-xl">★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-6 italic">
+                &quot;The relationship mapping feature gives us insights that no other tool provides. It&apos;s invaluable for strategy.&quot;
+              </p>
+              <div>
+                <p className="font-semibold text-gray-900">Jessica Park</p>
+                <p className="text-sm text-gray-600">Head of Strategy, InnovateLabs</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
