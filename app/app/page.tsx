@@ -17,13 +17,13 @@ export default function Dashboard() {
   const [results, setResults] = useState<AnalysisResult | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
 
-  const handleAnalyze = useCallback(async (content: string, entityType: string) => {
+  const handleAnalyze = useCallback(async (content: string) => {
     setIsAnalyzing(true)
     try {
       const response = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content, entityType }),
+        body: JSON.stringify({ content }),
       })
       const data = await response.json()
       setResults(data)

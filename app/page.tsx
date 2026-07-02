@@ -1,220 +1,307 @@
-'use client'
-
 import Link from 'next/link'
-import { ArrowRight, Lightbulb, Database, Zap, Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { ArrowRight, Sparkles, Zap, Target, Compass } from 'lucide-react'
 
-export default function LandingPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+export default function Landing() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="w-full bg-white">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
+      <nav className="sticky top-0 z-40 w-full border-b border-gray-100 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-              <Lightbulb className="w-5 h-5 text-white" />
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center">
+              <Compass className="w-5 h-5 text-white" />
             </div>
-            <span className="font-semibold text-primary text-lg">PDI</span>
+            <span className="font-semibold text-gray-900">Product Discovery</span>
           </div>
-          
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm text-muted hover:text-primary transition">Features</a>
-            <a href="#how-it-works" className="text-sm text-muted hover:text-primary transition">How it works</a>
-            <Link href="/app" className="px-4 py-2 bg-accent text-white rounded-lg hover:bg-blue-700 transition font-light text-sm">
-              Try it free
-            </Link>
-          </div>
-
-          <button 
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          <Link
+            href="/app"
+            className="px-6 py-2 rounded-full bg-gray-900 text-white font-medium text-sm hover:bg-gray-800 transition"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+            Try it free
+          </Link>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border px-4 py-4 space-y-3">
-            <a href="#features" className="block text-sm text-muted hover:text-primary transition py-2">Features</a>
-            <a href="#how-it-works" className="block text-sm text-muted hover:text-primary transition py-2">How it works</a>
-            <Link href="/app" className="block w-full px-4 py-2 bg-accent text-white rounded-lg hover:bg-blue-700 transition font-light text-sm text-center">
-              Try it free
-            </Link>
-          </div>
-        )}
       </nav>
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 text-center">
-        <div className="inline-block px-4 py-2 bg-accent-light border border-accent rounded-full mb-6">
-          <span className="text-sm text-accent font-light">AI-native organizational memory for product teams</span>
-        </div>
-
-        <h1 className="text-4xl md:text-6xl font-light text-primary mb-6 leading-tight text-balance">
-          Stop losing <span className="font-semibold">discovery knowledge</span>
-        </h1>
-
-        <p className="text-lg text-muted max-w-2xl mx-auto mb-8 font-light leading-relaxed text-balance">
-          Capture, connect, and surface the insights, assumptions, and decisions your team generates continuously. Turn discovery into organizational memory.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link 
-            href="/app"
-            className="px-8 py-3 bg-accent text-white rounded-lg hover:bg-blue-700 transition font-light text-base flex items-center justify-center gap-2 group"
-          >
-            Get started free
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition" />
-          </Link>
-          <a 
-            href="#how-it-works"
-            className="px-8 py-3 border border-border text-primary rounded-lg hover:bg-secondary transition font-light text-base"
-          >
-            Learn more
-          </a>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-6 mt-16 max-w-2xl mx-auto">
-          <div>
-            <div className="text-2xl font-semibold text-accent mb-1">10/10</div>
-            <p className="text-xs text-muted font-light">Teams lose insights weekly</p>
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-200">
+            <Sparkles className="w-4 h-4 text-purple-600" />
+            <span className="text-sm text-purple-700 font-medium">AI-powered intelligence</span>
           </div>
-          <div>
-            <div className="text-2xl font-semibold text-accent mb-1">95%</div>
-            <p className="text-xs text-muted font-light">Make decisions with insufficient evidence</p>
-          </div>
-          <div>
-            <div className="text-2xl font-semibold text-accent mb-1">70%</div>
-            <p className="text-xs text-muted font-light">Find retrieval extremely difficult</p>
+          <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            Discover what your competitors don't
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Transform raw market data into actionable insights with AI-powered analysis. Uncover hidden patterns, identify opportunities, and stay ahead of the market.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/app"
+              className="px-8 py-3 rounded-full bg-purple-600 text-white font-semibold hover:bg-purple-700 transition flex items-center gap-2 whitespace-nowrap"
+            >
+              Try it free
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <button className="px-8 py-3 rounded-full border border-gray-300 text-gray-900 font-semibold hover:bg-gray-50 transition">
+              Watch demo
+            </button>
           </div>
         </div>
       </section>
 
       {/* Problem Section */}
-      <section className="bg-secondary py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-4xl font-light text-primary mb-6 text-balance">
-              You&apos;re doing discovery right. Systems are failing you.
-            </h2>
-            <p className="text-lg text-muted font-light leading-relaxed mb-6">
-              Your team captures insights continuously — in Dovetail, Productboard, Notion, Confluence, Slack. But there&apos;s no system that connects research to decisions, preserves assumptions, or surfaces what you already know when the next question arises.
-            </p>
-            <p className="text-lg text-muted font-light leading-relaxed">
-              The result: duplicate research, forgotten findings, high-stakes decisions made without evidence that exists somewhere — just nowhere accessible.
-            </p>
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 text-center">
+            Tired of guessing what your market wants?
+          </h2>
+          <p className="text-xl text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Most teams waste thousands of hours manually analyzing competitors and market trends. You&apos;re left with outdated insights and missed opportunities. It doesn&apos;t have to be this way.
+          </p>
+        </div>
+      </section>
+
+      {/* Solution Section */}
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 text-center">
+            Three ways Product Discovery works
+          </h2>
+          <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
+            Intelligent analysis at every step of discovery
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="p-8 rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-lg transition bg-white">
+              <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mb-6">
+                <Zap className="w-6 h-6 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Extract Entities</h3>
+              <p className="text-gray-600">
+                AI automatically identifies and extracts key entities from competitor data—products, features, pricing, and more—in seconds.
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="p-8 rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-lg transition bg-white">
+              <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mb-6">
+                <Target className="w-6 h-6 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Find Relationships</h3>
+              <p className="text-gray-600">
+                Discover how features, pricing, and positioning connect. Map the competitive landscape with AI-powered relationship detection.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="p-8 rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-lg transition bg-white">
+              <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mb-6">
+                <Sparkles className="w-6 h-6 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Generate Insights</h3>
+              <p className="text-gray-600">
+                Get contextual analysis that synthesizes all the data into actionable insights—no guesswork, pure intelligence.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-        <h2 className="text-3xl md:text-4xl font-light text-primary mb-12 text-center text-balance">
-          How PDI solves the knowledge continuity gap
-        </h2>
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-20 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 text-center">
+            Powerful features built for teams
+          </h2>
+          <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
+            Everything you need to win in competitive markets
+          </p>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Feature 1 */}
-          <div className="bg-white border border-border rounded-xl p-6 hover:border-accent transition hover:shadow-lg">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-              <Database className="w-6 h-6 text-accent" />
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Feature 1 */}
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-purple-100">
+                  <Zap className="h-6 w-6 text-purple-600" />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Instant Analysis</h3>
+                <p className="text-gray-600">
+                  Analyze competitor data in seconds with AI-powered entity extraction and relationship mapping. No manual work required.
+                </p>
+              </div>
             </div>
-            <h3 className="text-lg font-semibold text-primary mb-3">Knowledge Graph</h3>
-            <p className="text-sm text-muted font-light leading-relaxed">
-              Automatically extract and connect insights, assumptions, decisions, and experiments. See how each piece of discovery relates to others.
-            </p>
-          </div>
 
-          {/* Feature 2 */}
-          <div className="bg-white border border-border rounded-xl p-6 hover:border-accent transition hover:shadow-lg">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-              <Zap className="w-6 h-6 text-accent" />
+            {/* Feature 2 */}
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-purple-100">
+                  <Target className="h-6 w-6 text-purple-600" />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Market Intelligence</h3>
+                <p className="text-gray-600">
+                  Identify market gaps, positioning opportunities, and competitive threats with AI-synthesized insights and recommendations.
+                </p>
+              </div>
             </div>
-            <h3 className="text-lg font-semibold text-primary mb-3">Proactive Alerts</h3>
-            <p className="text-sm text-muted font-light leading-relaxed">
-              Surface conflicts, assumption expiries, duplicate experiments, and coverage gaps before they become $400k mistakes.
-            </p>
-          </div>
 
-          {/* Feature 3 */}
-          <div className="bg-white border border-border rounded-xl p-6 hover:border-accent transition hover:shadow-lg">
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-              <Lightbulb className="w-6 h-6 text-accent" />
+            {/* Feature 3 */}
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-purple-100">
+                  <Sparkles className="h-6 w-6 text-purple-600" />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Search & Explore</h3>
+                <p className="text-gray-600">
+                  Powerful search functionality to find patterns, relationships, and insights across all your competitive intelligence data.
+                </p>
+              </div>
             </div>
-            <h3 className="text-lg font-semibold text-primary mb-3">AI Synthesis</h3>
-            <p className="text-sm text-muted font-light leading-relaxed">
-              Claude synthesizes your knowledge into evidence-backed answers, shows contradictions, identifies gaps, and suggests next questions.
-            </p>
+
+            {/* Feature 4 */}
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-purple-100">
+                  <Compass className="h-6 w-6 text-purple-600" />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Actionable Recommendations</h3>
+                <p className="text-gray-600">
+                  Move beyond data. Get specific, prioritized recommendations to improve your product strategy and market positioning.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="bg-secondary py-20 md:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-light text-primary mb-16 text-center text-balance">
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 text-center">
             How it works
           </h2>
+          <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
+            From raw data to actionable intelligence in three steps
+          </p>
 
-          <div className="max-w-3xl mx-auto space-y-8 md:space-y-12">
+          <div className="grid md:grid-cols-3 gap-12">
             {/* Step 1 */}
-            <div className="flex gap-6 md:gap-8">
-              <div className="flex flex-col items-center">
-                <div className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-semibold flex-shrink-0">
-                  1
-                </div>
-                <div className="w-1 h-24 md:h-32 bg-border mt-4" />
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-purple-600 text-white flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+                1
               </div>
-              <div className="pb-8 md:pb-12">
-                <h3 className="text-lg font-semibold text-primary mb-2">Capture discoveries</h3>
-                <p className="text-sm text-muted font-light leading-relaxed">
-                  Document insights from customer research, assumptions underpinning decisions, roadmap choices, and experiment results. One source of truth for all discovery.
-                </p>
-              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Upload your data</h3>
+              <p className="text-gray-600">
+                Paste competitor artifacts—landing pages, blog posts, feature lists, pricing pages, or any text data you want analyzed.
+              </p>
+            </div>
+
+            {/* Arrow */}
+            <div className="hidden md:flex items-center justify-center">
+              <div className="text-3xl text-gray-300">→</div>
             </div>
 
             {/* Step 2 */}
-            <div className="flex gap-6 md:gap-8">
-              <div className="flex flex-col items-center">
-                <div className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-semibold flex-shrink-0">
-                  2
-                </div>
-                <div className="w-1 h-24 md:h-32 bg-border mt-4" />
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-purple-600 text-white flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+                2
               </div>
-              <div className="pb-8 md:pb-12">
-                <h3 className="text-lg font-semibold text-primary mb-2">PDI builds your graph</h3>
-                <p className="text-sm text-muted font-light leading-relaxed">
-                  AI extracts entities and their relationships — which insights support which assumptions, which assumptions inform which decisions. Your knowledge becomes visible and traversable.
-                </p>
-              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">AI analyzes instantly</h3>
+              <p className="text-gray-600">
+                Our AI engine processes the data, extracting key entities, finding relationships, and building a knowledge graph automatically.
+              </p>
+            </div>
+
+            {/* Arrow */}
+            <div className="hidden md:flex items-center justify-center">
+              <div className="text-3xl text-gray-300">→</div>
             </div>
 
             {/* Step 3 */}
-            <div className="flex gap-6 md:gap-8">
-              <div className="flex flex-col items-center">
-                <div className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-semibold flex-shrink-0">
-                  3
-                </div>
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-purple-600 text-white flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+                3
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-primary mb-2">Alerts prevent mistakes</h3>
-                <p className="text-sm text-muted font-light leading-relaxed">
-                  PDI continuously monitors your knowledge state. Before you re-research a solved problem, duplicate an experiment, or base a decision on expired assumptions — PDI surfaces what you already know.
-                </p>
-              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Get insights & search</h3>
+              <p className="text-gray-600">
+                Explore the interactive graph, search for patterns, and get AI-synthesized insights on competitive positioning and gaps.
+              </p>
             </div>
           </div>
 
-          {/* Diagram placeholder */}
-          <div className="mt-16 md:mt-24 max-w-3xl mx-auto bg-background border border-border rounded-xl p-8 md:p-12">
-            <div className="aspect-video bg-secondary rounded-lg flex items-center justify-center border border-border">
-              <div className="text-center">
-                <Lightbulb className="w-12 h-12 text-muted/30 mx-auto mb-4" />
-                <p className="text-sm text-muted font-light">Interactive knowledge graph visualization</p>
+          {/* Mobile view arrows */}
+          <div className="md:hidden flex flex-col items-center gap-6 mt-12">
+            <div className="text-3xl text-gray-300">↓</div>
+            <div className="text-3xl text-gray-300">↓</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 text-center">
+            Trusted by product leaders
+          </h2>
+          <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
+            See why teams use Product Discovery to make smarter decisions
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div className="bg-white p-8 rounded-2xl border border-gray-200">
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-yellow-400 text-xl">★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-6 italic">
+                &quot;This tool has completely changed how we approach competitive analysis. What used to take days now takes minutes.&quot;
+              </p>
+              <div>
+                <p className="font-semibold text-gray-900">Sarah Chen</p>
+                <p className="text-sm text-gray-600">VP Product, TechCorp</p>
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="bg-white p-8 rounded-2xl border border-gray-200">
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-yellow-400 text-xl">★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-6 italic">
+                &quot;The AI insights are incredibly accurate. We&apos;ve identified three major market gaps we never would have seen manually.&quot;
+              </p>
+              <div>
+                <p className="font-semibold text-gray-900">Marcus Rodriguez</p>
+                <p className="text-sm text-gray-600">Product Manager, StartupXYZ</p>
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="bg-white p-8 rounded-2xl border border-gray-200">
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-yellow-400 text-xl">★</span>
+                ))}
+              </div>
+              <p className="text-gray-700 mb-6 italic">
+                &quot;The relationship mapping feature gives us insights that no other tool provides. It&apos;s invaluable for strategy.&quot;
+              </p>
+              <div>
+                <p className="font-semibold text-gray-900">Jessica Park</p>
+                <p className="text-sm text-gray-600">Head of Strategy, InnovateLabs</p>
               </div>
             </div>
           </div>
@@ -222,37 +309,28 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Footer */}
-      <section className="bg-background border-t border-border py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-primary mb-6 text-balance">
-            Stop rediscovering the same problems
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
+            Start discovering today
           </h2>
-          <p className="text-lg text-muted font-light mb-10 text-balance max-w-2xl mx-auto">
-            Give your team organizational memory. Make discovery knowledge compound instead of disappear.
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+            Get instant access to product intelligence. No credit card required.
           </p>
-          <Link 
+          <Link
             href="/app"
-            className="inline-flex px-8 py-4 bg-accent text-white rounded-lg hover:bg-blue-700 transition font-light text-base gap-2 group"
+            className="inline-flex px-10 py-4 rounded-full bg-purple-600 text-white font-semibold text-lg hover:bg-purple-700 transition items-center gap-2"
           >
-            Get started — it&apos;s free
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition" />
+            Get started free
+            <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-secondary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-muted font-light">
-              © 2026 Product Discovery Intelligence. All rights reserved.
-            </p>
-            <div className="flex gap-6">
-              <a href="#" className="text-sm text-muted hover:text-primary transition">Privacy</a>
-              <a href="#" className="text-sm text-muted hover:text-primary transition">Terms</a>
-              <a href="#" className="text-sm text-muted hover:text-primary transition">Docs</a>
-            </div>
-          </div>
+      <footer className="w-full border-t border-gray-100 px-4 sm:px-6 lg:px-8 py-12 bg-gray-50">
+        <div className="max-w-6xl mx-auto text-center text-gray-600">
+          <p>© 2024 Product Discovery Intelligence. All rights reserved.</p>
         </div>
       </footer>
     </div>
