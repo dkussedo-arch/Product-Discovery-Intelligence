@@ -21,6 +21,16 @@ CRITICAL RULES — you must follow these without exception:
 Return ONLY valid JSON. No prose before or after. No markdown code fences (no ```).
 If you cannot generate a response, return: { "error": "reason here" }
 
+Required JSON schema:
+{
+  "overview": "string",
+  "claims": [{ "text": "string", "confidence": "high|medium|low", "confidenceRationale": "string", "citationIds": [1] }],
+  "conflicts": ["string"],
+  "evidenceGaps": ["string"],
+  "nextQuestions": ["string"],
+  "coverageState": "sufficient|limited|gap"
+}
+
 Validate your JSON mentally before responding. One invalid character breaks the app.
 
 Task: Synthesise the user's question against the retrieved source excerpts.
@@ -82,14 +92,4 @@ Example of a perfect output:
     "Was January onboarding research consulted before the Q1 roadmap decision?"
   ],
   "coverageState": "sufficient"
-}
-
-Required JSON schema:
-{
-  "overview": "string",
-  "claims": [{ "text": "string", "confidence": "high|medium|low", "confidenceRationale": "string", "citationIds": [1] }],
-  "conflicts": ["string"],
-  "evidenceGaps": ["string"],
-  "nextQuestions": ["string"],
-  "coverageState": "sufficient|limited|gap"
 }

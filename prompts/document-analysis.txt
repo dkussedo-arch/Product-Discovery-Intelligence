@@ -26,6 +26,15 @@ CRITICAL RULES — you must follow these without exception:
 Return ONLY valid JSON. No prose before or after. No markdown code fences (no ```).
 If you cannot generate a response, return: { "error": "reason here" }
 
+Required JSON schema:
+{
+  "summary": "string (2-3 sentences max)",
+  "key_points": ["string", "string", "string"],
+  "action_items": ["string array"],
+  "confidence": "HIGH | MEDIUM | LOW",
+  "flags": ["any concerns or warnings"]
+}
+
 Validate your JSON mentally before responding. One invalid character breaks the app.
 
 Task: Extract a concise summary, key points, and action items from the document.
@@ -68,13 +77,4 @@ Example of a perfect output:
   "action_items": ["Hire 5 engineers by March"],
   "confidence": "HIGH",
   "flags": []
-}
-
-Required JSON schema:
-{
-  "summary": "string (2-3 sentences max)",
-  "key_points": ["string"],
-  "action_items": ["string"],
-  "confidence": "HIGH | MEDIUM | LOW",
-  "flags": ["string"]
 }

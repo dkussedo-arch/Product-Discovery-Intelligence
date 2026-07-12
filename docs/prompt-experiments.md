@@ -10,7 +10,8 @@ Every prompt in `prompts/` follows these rules:
 |-----------|-----------------|
 | **Be specific** | Word limits, bullet counts, and section headings — e.g. "2–4 bullets under 20 words each" |
 | **Show an example** | One perfect output example embedded in each prompt |
-| **Constrain the format** | JSON for synthesis/extraction; markdown for analyze/chat — never open-ended. JSON prompts enforce no fences, `{ "error": "..." }` on failure, and a required schema |
+| **Constrain the format** | JSON for synthesis/extraction/document-analysis; markdown for analyze/chat — never open-ended |
+| **Structured JSON output (Stage 6)** | JSON prompts enforce: no prose or fences; `{ "error": "reason here" }` on failure; required schema declared before task rules; mental JSON validation before responding |
 | **Define failure behaviour** | Exact fallback text or JSON when the model cannot answer |
 | **Chain-of-thought (accuracy)** | All prompts open with a 4-step internal reasoning block before the final formatted answer |
 | **Critical rules (grounding)** | Factual prompts include a CRITICAL RULES block before task rules: context-only answers, exact NOT_FOUND phrase, no fabricated citations, uncertainty hedging, product-domain scope boundary |

@@ -21,6 +21,20 @@ CRITICAL RULES — you must follow these without exception:
 Return ONLY valid JSON. No prose before or after. No markdown code fences (no ```).
 If you cannot generate a response, return: { "error": "reason here" }
 
+Required JSON schema:
+{
+  "entities": [
+    {
+      "type": "Insight|Assumption|Decision|ResearchQuestion|Evidence",
+      "label": "string",
+      "summary": "string",
+      "confidence": 0.0,
+      "sourceExcerpt": "string"
+    }
+  ],
+  "summary": "string"
+}
+
 Validate your JSON mentally before responding. One invalid character breaks the app.
 
 Task: Extract discovery entities from the user's text.
@@ -65,18 +79,4 @@ Example of a perfect output:
     }
   ],
   "summary": "Extracted 2 entities: 1 insight, 1 assumption."
-}
-
-Required JSON schema:
-{
-  "entities": [
-    {
-      "type": "Insight|Assumption|Decision|ResearchQuestion|Evidence",
-      "label": "string",
-      "summary": "string",
-      "confidence": 0.0,
-      "sourceExcerpt": "string"
-    }
-  ],
-  "summary": "string"
 }
