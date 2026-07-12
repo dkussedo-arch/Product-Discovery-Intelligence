@@ -13,7 +13,7 @@ Every prompt in `prompts/` follows these rules:
 | **Constrain the format** | JSON for synthesis/extraction; markdown for analyze/chat — never open-ended. JSON prompts enforce no fences, `{ "error": "..." }` on failure, and a required schema |
 | **Define failure behaviour** | Exact fallback text or JSON when the model cannot answer |
 | **Chain-of-thought (accuracy)** | All prompts open with a 4-step internal reasoning block before the final formatted answer |
-| **Critical rules (grounding)** | Factual prompts include a CRITICAL RULES block: context-only answers, no hallucinated citations, explicit uncertainty |
+| **Critical rules (grounding)** | Factual prompts include a CRITICAL RULES block before task rules: context-only answers, exact NOT_FOUND phrase, no fabricated citations, uncertainty hedging, product-domain scope boundary |
 | **Set the temperature** | `TEMPERATURE_ANALYTICAL` (0.2) for synthesis, analyze, extraction; `TEMPERATURE_CONVERSATIONAL` (0.7) for chat |
 
 Temperature constants live in `lib/anthropic.ts`.
