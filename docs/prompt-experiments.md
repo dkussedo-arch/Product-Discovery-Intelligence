@@ -19,9 +19,9 @@ Every prompt in `prompts/` follows these rules:
 
 Temperature constants live in `lib/anthropic.ts`.
 
-## Deploy gate (mandatory)
+## Stage 8 — Deploy gate (mandatory)
 
-**Do NOT deploy until the eval pass rate is at least 85%.** World-class AI products target **95%+**.
+**Do NOT deploy to Stage 8 until the eval pass rate is at least 85%.** World-class AI products target **95%+**.
 
 ```bash
 # Install Promptfoo (once)
@@ -51,20 +51,22 @@ The gate script runs Promptfoo, writes `prompts/evaluation/latest-results.json`,
 
 ### Test cases
 
-Canonical fixtures: `prompts/evaluation/test-cases.json` (10 cases). Promptfoo YAML is generated via `pnpm eval:sync`.
+Canonical fixtures: `prompts/evaluation/test-cases.json` (12 cases). Promptfoo YAML is generated via `pnpm eval:sync`.
 
 | ID | Category | Scenario |
 |----|----------|----------|
-| tc-001 | Golden path | Dovetail interview synthesis with actions |
-| tc-002 | Golden path | Decision record with dissent |
-| tc-003 | Incomplete info | Vague Slack thread — no quantification |
-| tc-004 | Incomplete info | Productboard cluster — no fix documented |
-| tc-005 | Off-topic | Team lunch → NOT_FOUND |
-| tc-006 | Off-topic | IT password reset → NOT_FOUND |
-| tc-007 | Hallucination | Unverified competitor assumption |
-| tc-008 | Hallucination | Qualitative retention claim, no metrics |
-| tc-009 | Long/formatted | Confluence markdown with table |
-| tc-010 | Long/formatted | Noisy Slack thread |
+| tc-001 | Stage 8 baseline | Typical good document (Q4 revenue + hire action) |
+| tc-002 | Stage 8 baseline | No relevant content → NOT_FOUND |
+| tc-003 | Golden path | Dovetail interview synthesis with actions |
+| tc-004 | Golden path | Decision record with dissent |
+| tc-005 | Incomplete info | Vague Slack thread — no quantification |
+| tc-006 | Incomplete info | Productboard cluster — no fix documented |
+| tc-007 | Off-topic | Team lunch → NOT_FOUND |
+| tc-008 | Off-topic | IT password reset → NOT_FOUND |
+| tc-009 | Hallucination | Unverified competitor assumption |
+| tc-010 | Hallucination | Qualitative retention claim, no metrics |
+| tc-011 | Long/formatted | Confluence markdown with table |
+| tc-012 | Long/formatted | Noisy Slack thread |
 
 Assertions live in `prompts/evaluation/assert-document-output.mjs` and support:
 

@@ -1,6 +1,33 @@
 [
   {
     "id": "tc-001",
+    "description": "Typical good document",
+    "name": "Stage 8 baseline — typical good document",
+    "category": ["golden_path", "stage_8"],
+    "system_prompt_ref": "prompts/document-analysis.txt",
+    "input": "Q4 revenue was $2.3M, up 40% YoY. Key actions: hire 5 engineers by March.",
+    "perfect_output": "Valid JSON summarizing Q4 revenue ($2.3M), 40% YoY growth, and the hire-5-engineers action. summary_contains revenue/Q4/40%. At least one action item. confidence HIGH. No fabricated figures beyond the document.",
+    "failure_mode": "Omits the stated action item, drops the 40% figure, or returns prose instead of JSON.",
+    "expected": {
+      "summary_contains": ["revenue", "Q4", "40%"],
+      "action_items_min": 1
+    }
+  },
+  {
+    "id": "tc-002",
+    "description": "Document with no relevant content",
+    "name": "Stage 8 baseline — no relevant content",
+    "category": ["off_topic", "stage_8"],
+    "system_prompt_ref": "prompts/document-analysis.txt",
+    "input": "This document does not mention any financial data.",
+    "perfect_output": "NOT_FOUND failure JSON: summary = 'I cannot find this information in the provided document.', empty key_points and action_items, confidence LOW, flags include NOT_FOUND. Does not invent financial or discovery content.",
+    "failure_mode": "Fabricates summary content from a document that explicitly has nothing to extract.",
+    "expected": {
+      "should_flag_not_found": true
+    }
+  },
+  {
+    "id": "tc-003",
     "name": "Golden path — interview synthesis with clear actions",
     "category": ["golden_path"],
     "system_prompt_ref": "prompts/document-analysis.txt",
@@ -13,19 +40,19 @@
     }
   },
   {
-    "id": "tc-002",
+    "id": "tc-004",
     "name": "Golden path — decision record with dissent",
     "category": ["golden_path"],
     "input": "Decision: Prioritize Salesforce connector for Q1 over onboarding improvements.\nDate: 2026-01-15 | Owner: Sarah Chen\nRationale: Largest deal in pipeline ($420k ARR) requested native Salesforce sync.\nLinked assumption: Enterprise churn is driven by missing integrations.\nDissent (Research lead): January Dovetail synthesis showed onboarding as primary churn driver — this decision did not reference that research.",
     "perfect_output": "Summary captures the Q1 Salesforce prioritization, pipeline deal rationale, and the dissent about onboarding research being ignored. key_points mention integration assumption, dissent, and onboarding research conflict. action_items may be empty (none explicitly stated) or only include implied follow-ups if clearly grounded. confidence: HIGH. flags: note conflict between assumption and research if not already in summary.",
     "failure_mode": "Misses dissent or softens conflict — treating a contested decision as unanimous.",
     "expected": {
-      "summary_contains": ["Salesforce", "onboarding", "dissent"],
+      "summary_contains": ["Salesforce", "onboarding", "research"],
       "action_items_min": 0
     }
   },
   {
-    "id": "tc-003",
+    "id": "tc-005",
     "name": "Incomplete information — vague insight, no numbers",
     "category": ["incomplete_information"],
     "input": "Slack #product-discovery — thread fragment\n\nPM: Are we sure integrations are the churn driver?\nResearch: Onboarding keeps coming up in interviews. Hard to quantify yet.\nPM: OK, let's keep an eye on it.",
@@ -37,7 +64,7 @@
     }
   },
   {
-    "id": "tc-004",
+    "id": "tc-006",
     "name": "Incomplete information — problem stated, no resolution",
     "category": ["incomplete_information"],
     "input": "Productboard cluster: 'Invite workflow confusing'\nStatus: Open | Votes: unknown (export truncated)\nNotes: Multiple admins mentioned difficulty adding teammates after SSO is configured. No proposed fix documented.",
@@ -49,7 +76,7 @@
     }
   },
   {
-    "id": "tc-005",
+    "id": "tc-007",
     "name": "Out of scope — social / facilities notice",
     "category": ["off_topic"],
     "input": "Team lunch is at noon in the cafeteria. Please bring your badge. Vegetarian options available.",
@@ -60,7 +87,7 @@
     }
   },
   {
-    "id": "tc-006",
+    "id": "tc-008",
     "name": "Out of scope — IT security admin email",
     "category": ["off_topic"],
     "input": "IT Security Notice\n\nMandatory password reset required by Friday 5pm. Click the link in Okta to update your credentials. Contact helpdesk@company.com for lockouts.",
@@ -71,7 +98,7 @@
     }
   },
   {
-    "id": "tc-007",
+    "id": "tc-009",
     "name": "Hallucination trap — competitor mention without evidence",
     "category": ["hallucination"],
     "input": "Assumption register entry #14\nWe believe Competitor Y won the Acme Corp deal because they have better enterprise SSO. Evidence: one Slack rumor, unverified. Status: Active.",
@@ -83,7 +110,7 @@
     }
   },
   {
-    "id": "tc-008",
+    "id": "tc-010",
     "name": "Hallucination trap — qualitative claim inviting invented metrics",
     "category": ["hallucination"],
     "input": "Exec brief excerpt\n\n'Onboarding improvements drove significant retention gains last quarter.' No figures, cohorts, or definitions of retention attached.",
@@ -95,7 +122,7 @@
     }
   },
   {
-    "id": "tc-009",
+    "id": "tc-011",
     "name": "Long formatted input — Confluence-style markdown export",
     "category": ["long_formatted"],
     "input": "# Q1 Discovery Review — Enterprise Segment\n\n## Background\nPM team reviewing churn in first 90 days for accounts >$50k ARR.\n\n## Findings\n| Theme | Mentions | Severity |\n|-------|----------|----------|\n| SSO setup delays | 18 | High |\n| Invite workflow | 11 | Medium |\n| Missing Salesforce sync | 6 | Low |\n\n## Quotes\n> \"We lost two weeks waiting for IT to approve SAML.\" — Admin, FinServ\n\n## Open questions\n- Is Salesforce actually a churn driver or a sales objection?\n- Do we have IT-admin persona research?\n\n## Proposed next steps\n1. Run 5 follow-up interviews with IT admins (Feb)\n2. Prototype SSO wizard in staging by March 1\n3. Pause Salesforce connector scoping until step 1 completes",
@@ -107,7 +134,7 @@
     }
   },
   {
-    "id": "tc-010",
+    "id": "tc-012",
     "name": "Long formatted input — noisy Slack thread with mixed signals",
     "category": ["long_formatted"],
     "input": "[2026-01-08 09:14] sarah: anyone have churn data for enterprise?\n[2026-01-08 09:16] mike: checking amplitude, brb\n[2026-01-08 09:22] lisa: january dovetail synthesis is in notion — onboarding > integrations from what i read\n[2026-01-08 09:23] sarah: @lisa link?\n[2026-01-08 09:24] lisa: https://notion.so/dovetail-jan-synthesis (sorry on mobile)\n[2026-01-08 09:31] mike: amplitude query timed out. no numbers yet.\n[2026-01-08 09:45] tom: sales still says we need salesforce first. pipeline deal pushing hard.\n[2026-01-08 09:47] sarah: ok let's discuss in roadmap review thursday\n[2026-01-08 09:48] mike: +1\n[2026-01-08 09:52] random-bot: Reminder: submit timesheets by EOD Friday",

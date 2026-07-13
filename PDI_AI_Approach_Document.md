@@ -527,7 +527,7 @@ Every model or prompt update must clear the full regression suite (the 200-item 
 
 **Promptfoo deploy gate (automated)**
 
-Do **not** deploy prompt or model changes until the Promptfoo eval pass rate is **≥ 85%**. World-class AI products target **95%+**. The repository enforces this via `pnpm eval:gate`, which runs structured test cases in `prompts/evaluation/test-cases.json` (e.g., tc-001 good document, tc-002 not-found flag) and exits non-zero if the pass rate falls below 85%.
+Do **not** deploy to Stage 8 until the Promptfoo eval pass rate is **≥ 85%**. World-class AI products target **95%+**. The repository enforces this via `pnpm eval:gate`, which runs structured test cases in `prompts/evaluation/test-cases.json` (tc-001 typical good document, tc-002 not-found flag) and exits non-zero if the pass rate falls below 85%.
 
 **In-Product Feedback Loop**
 

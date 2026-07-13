@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
-description: PDI document analysis eval gate — 85% minimum pass rate to deploy (10 test cases)
+description: PDI Stage 8 document analysis eval gate — 85% minimum pass rate to deploy (12 test cases; tc-001/tc-002 are Stage 8 baselines)
 
 prompts:
   - file://document-analysis-prompt.yaml

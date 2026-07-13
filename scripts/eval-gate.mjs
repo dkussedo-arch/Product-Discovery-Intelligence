@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 /**
- * Run Promptfoo evals and enforce deploy gate:
- * - Minimum pass rate: 85% (hard block)
- * - World-class target: 95%+
+ * Stage 8 deploy gate — Promptfoo evals before deploy:
+ * - Do NOT deploy until pass rate is at least 85% (hard block)
+ * - World-class AI products target 95%+
+ *
+ * Baseline fixtures in prompts/evaluation/test-cases.json:
+ * - tc-001: typical good document
+ * - tc-002: document with no relevant content (NOT_FOUND)
  */
 import { execSync } from 'node:child_process'
 import { mkdirSync, readFileSync } from 'node:fs'

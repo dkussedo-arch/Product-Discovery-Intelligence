@@ -1,6 +1,8 @@
 # Prompt evaluation (Promptfoo)
 
-**Deploy rule:** do NOT deploy until pass rate is **≥ 85%**. World-class target: **95%+**.
+**Stage 8 deploy rule:** do NOT deploy until pass rate is **≥ 85%**. World-class target: **95%+**.
+
+Baseline fixtures: **tc-001** (typical good document), **tc-002** (no relevant content → NOT_FOUND).
 
 Requires `ANTHROPIC_API_KEY` in your environment.
 
@@ -27,7 +29,7 @@ npx promptfoo view
 | `document-analysis-prompt.yaml` | Chat template for document analysis eval |
 | `synthesis-baseline-prompt.yaml` | Baseline synthesis chat template |
 | `synthesis-cot-prompt.yaml` | Chain-of-thought synthesis chat template |
-| `promptfooconfig.yaml` | Document analysis gate (tc-001 … tc-010) |
+| `promptfooconfig.yaml` | Stage 8 document analysis gate (tc-001 … tc-012) |
 | `promptfooconfig.synthesis.yaml` | Synthesis baseline vs chain-of-thought A/B |
 | `test-cases.json` | Canonical test fixtures (edit this file) |
 | `test-cases.promptfoo.yaml` | Generated from JSON — run `pnpm eval:sync` |

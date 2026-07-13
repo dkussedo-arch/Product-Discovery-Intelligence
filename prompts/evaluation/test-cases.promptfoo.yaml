@@ -1,4 +1,16 @@
-- description: tc-001 — Golden path — interview synthesis with clear actions
+- description: tc-001 — Stage 8 baseline — typical good document
+  vars:
+    input: |
+      Q4 revenue was $2.3M, up 40% YoY. Key actions: hire 5 engineers by March.
+    expected: '{"summary_contains":["revenue","Q4","40%"],"action_items_min":1}'
+
+- description: tc-002 — Stage 8 baseline — no relevant content
+  vars:
+    input: |
+      This document does not mention any financial data.
+    expected: '{"should_flag_not_found":true}'
+
+- description: tc-003 — Golden path — interview synthesis with clear actions
   vars:
     input: |
       Dovetail synthesis — Enterprise onboarding churn (Jan 2026)
@@ -11,7 +23,7 @@
       - Re-interview 3 churned accounts in February
     expected: '{"summary_contains":["SSO","onboarding","churn"],"action_items_min":2}'
 
-- description: tc-002 — Golden path — decision record with dissent
+- description: tc-004 — Golden path — decision record with dissent
   vars:
     input: |
       Decision: Prioritize Salesforce connector for Q1 over onboarding improvements.
@@ -19,9 +31,9 @@
       Rationale: Largest deal in pipeline ($420k ARR) requested native Salesforce sync.
       Linked assumption: Enterprise churn is driven by missing integrations.
       Dissent (Research lead): January Dovetail synthesis showed onboarding as primary churn driver — this decision did not reference that research.
-    expected: '{"summary_contains":["Salesforce","onboarding","dissent"],"action_items_min":0}'
+    expected: '{"summary_contains":["Salesforce","onboarding","research"],"action_items_min":0}'
 
-- description: tc-003 — Incomplete information — vague insight, no numbers
+- description: tc-005 — Incomplete information — vague insight, no numbers
   vars:
     input: |
       Slack #product-discovery — thread fragment
@@ -31,7 +43,7 @@
       PM: OK, let's keep an eye on it.
     expected: '{"summary_contains":["onboarding"],"action_items_min":0}'
 
-- description: tc-004 — Incomplete information — problem stated, no resolution
+- description: tc-006 — Incomplete information — problem stated, no resolution
   vars:
     input: |
       Productboard cluster: 'Invite workflow confusing'
@@ -39,13 +51,13 @@
       Notes: Multiple admins mentioned difficulty adding teammates after SSO is configured. No proposed fix documented.
     expected: '{"summary_contains":["invite","SSO"],"action_items_min":0}'
 
-- description: tc-005 — Out of scope — social / facilities notice
+- description: tc-007 — Out of scope — social / facilities notice
   vars:
     input: |
       Team lunch is at noon in the cafeteria. Please bring your badge. Vegetarian options available.
     expected: '{"should_flag_not_found":true}'
 
-- description: tc-006 — Out of scope — IT security admin email
+- description: tc-008 — Out of scope — IT security admin email
   vars:
     input: |
       IT Security Notice
@@ -53,14 +65,14 @@
       Mandatory password reset required by Friday 5pm. Click the link in Okta to update your credentials. Contact helpdesk@company.com for lockouts.
     expected: '{"should_flag_not_found":true}'
 
-- description: tc-007 — Hallucination trap — competitor mention without evidence
+- description: tc-009 — Hallucination trap — competitor mention without evidence
   vars:
     input: |
       Assumption register entry #14
       We believe Competitor Y won the Acme Corp deal because they have better enterprise SSO. Evidence: one Slack rumor, unverified. Status: Active.
     expected: '{"summary_contains":["Competitor","SSO","rumor"],"action_items_min":0}'
 
-- description: tc-008 — Hallucination trap — qualitative claim inviting invented metrics
+- description: tc-010 — Hallucination trap — qualitative claim inviting invented metrics
   vars:
     input: |
       Exec brief excerpt
@@ -68,7 +80,7 @@
       'Onboarding improvements drove significant retention gains last quarter.' No figures, cohorts, or definitions of retention attached.
     expected: '{"summary_contains":["onboarding","retention"],"action_items_min":0}'
 
-- description: tc-009 — Long formatted input — Confluence-style markdown export
+- description: tc-011 — Long formatted input — Confluence-style markdown export
   vars:
     input: |
       # Q1 Discovery Review — Enterprise Segment
@@ -96,7 +108,7 @@
       3. Pause Salesforce connector scoping until step 1 completes
     expected: '{"summary_contains":["SSO","Salesforce"],"action_items_min":3}'
 
-- description: tc-010 — Long formatted input — noisy Slack thread with mixed signals
+- description: tc-012 — Long formatted input — noisy Slack thread with mixed signals
   vars:
     input: |
       [2026-01-08 09:14] sarah: anyone have churn data for enterprise?
